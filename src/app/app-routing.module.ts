@@ -9,6 +9,11 @@ import { AuthGuardService } from './authentification/services/auth-guard.service
 import { TransferFormComponent } from './transfer/components/transfer-form/transfer-form.component';
 import { TransferListComponent } from './transfer/components/transfer-list/transfer-list.component';
 import { TransferDoneComponent } from './transfer/components/transfer-done/transfer-done.component';
+import { TransferEspeceFormComponent } from './transfertEspecse/components/transferEspece-form/transferEspece-form.component';
+import { TransferEspeceListComponent } from './transfertEspecse/components/transferEspece-list/transferEspece-list.component';
+import { TransferEspeceDoneComponent } from './transfertEspecse/components/transferEspece-done/transferEspece-done.component';
+import { TransferByStatus } from './transfertEspecse/components/transferByStatus/transferByStatus.component';
+
 
 const routes: Routes = [
   {
@@ -48,6 +53,27 @@ const routes: Routes = [
   {
     path: 'transfertEffectue/:id',
     component: TransferDoneComponent,
+  },
+
+
+  //here routes for transfer by espece
+  
+  {
+    path: 'transferEspeceForm',
+    component: TransferEspeceFormComponent,
+  },
+  {
+    path: 'transferEspece',
+    component: TransferEspeceListComponent,
+  },
+  {
+    path: 'transferEspeceEffectue/:id',
+    component: TransferEspeceDoneComponent,
+  },
+  
+  {
+    path: 'transferByStatus',
+    component: TransferByStatus,
   },
 ];
 

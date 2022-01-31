@@ -12,10 +12,15 @@ import { BasicAuthHtppInterceptorService } from './authentification/services/bas
 import { SharedModule } from './shared/shared.module';
 import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
 import { TransferModule } from './transfer/transfer.module';
+import { TransferEspeceFormComponent } from './transfertEspecse/components/transferEspece-form/transferEspece-form.component';
+import { TransferEspeceListComponent } from './transfertEspecse/components/transferEspece-list/transferEspece-list.component';
+import { TransferEspeceDoneComponent } from './transfertEspecse/components/transferEspece-done/transferEspece-done.component';
+import { TransferByStatus } from './transfertEspecse/components/transferByStatus/transferByStatus.component';
+
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,TransferEspeceFormComponent,TransferEspeceListComponent,TransferEspeceDoneComponent,TransferByStatus],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +30,7 @@ import { TransferModule } from './transfer/transfer.module';
     AuthentificationModule,
     SharedModule,
     TransferModule,
+    
   ],
   providers: [
     {
