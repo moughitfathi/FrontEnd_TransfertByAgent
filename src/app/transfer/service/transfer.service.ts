@@ -16,6 +16,7 @@ export class TransferService {
       'http://localhost:8088/CLIENT-SERVICE//transfertsByStatus/' + status +""
     );
   }
+  public findAgent
 
   public save(transfer: Transfer) {
     return this.http.post<Transfer>(this.transferUrl , transfer);

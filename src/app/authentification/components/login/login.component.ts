@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthentificationService } from '../../services/authentification.service';
+import { Agent } from 'src/app/shared/models/agent';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import { AuthentificationService } from '../../services/authentification.service
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  AGENT: Agent;
 
   loginInvalid = false;
 
@@ -32,9 +34,11 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
+
+    this.AGENT = this.form.value;
     console.log(this.username.value);
     this.loginservice
-      .authentificate(this.username.value, this.password.value)
+      .authentificate(this.AGENT)
       .subscribe(
         (data) => {
           this.loginInvalid = false;

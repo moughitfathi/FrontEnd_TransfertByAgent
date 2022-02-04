@@ -1,20 +1,27 @@
-.container {
-  padding: 2.5% 10%;
-  margin: 0 auto;
-}
-.background {
-  height: 100%;
-  background-color: #f5f7fa;
-}
-.content {
-  background-color: white;
-}
 table {
   width: 100%;
 }
-.soustraction {
-  color: red;
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
 }
-.addition {
-  color: green;
+.container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+.blueButton {
+  background: #3f51b5;
+  color: white;
+  margin-right: 5px;
+}
+.importer {
+  color: #3f51b5;
+}
+.borderBottom {
+  border-bottom: 1px solid #dee2e6;
+}
+.fullheight {
+  height: 100%;
 }

@@ -12,14 +12,14 @@ import { Account } from '../../model/account';
   styleUrls: ['./account-form.component.css'],
 })
 export class AccountFormComponent implements OnInit {
-  codeId: string;
+  codeId: any;
   client: Client;
   account: Account;
   accounts: Account[];
   accountForm = new FormGroup({
     numero: new FormControl('', Validators.required),
-    id: new FormControl('', Validators.required),
     solde: new FormControl('', Validators.required),
+    pin: new FormControl('', Validators.required),
 
 
   });
@@ -31,8 +31,8 @@ export class AccountFormComponent implements OnInit {
   get numero() {
     return this.accountForm.get('numero');
   }
-  get id() {
-    return this.accountForm.get('id');
+  get pin() {
+    return this.accountForm.get('pin');
   }
   get solde() {
     return this.accountForm.get('solde');
@@ -47,23 +47,24 @@ export class AccountFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.codeId = this.route.snapshot.params['id'];
-    this.clientService.findClient(this.codeId).subscribe(
-      (data) => {
-        console.log(data);
-        this.client = data[0];
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    // this.clientService.findClient(this.codeId).subscribe(
+    //   (data) => {
+    //     console.log(data);
+    //     this.client = data[0];
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
   }
 
   onSubmit() {
     this.account = this.accountForm.value;
-    this.account.client = this.client;
+    this.account.client=this.codeId;
+    
     console.log(this.account);
     this.accountService
-      .save(this.account,this.codeId)
+      .save(this.account)
       .subscribe((result) => this.gotoAccountList());
   }
 

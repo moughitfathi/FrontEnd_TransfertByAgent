@@ -13,20 +13,22 @@ import { Account } from '../../model/account';
   styleUrls: ['./account-list.component.css'],
 })
 export class AccountListComponent implements OnInit {
-  ACCOUNTS!: Account[];
+  ACCOUNTS!: any;
   codeId: string;
 
-  dataSource = new MatTableDataSource<Account>(this.ACCOUNTS);
+  dataSource = new MatTableDataSource<Account[]>(this.ACCOUNTS);
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   displayedColumns: string[] = [
+    
     'id',
     'numero',
-    'client',
+    'pin',
     'solde',
+    'client',
     'actions',
   ];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -41,6 +43,7 @@ export class AccountListComponent implements OnInit {
     console.log(this.codeId);
   }
 
+
   deleteAccount(id: number) {
     this.accountService.delete(id).subscribe(
       (data) => {
@@ -49,10 +52,11 @@ export class AccountListComponent implements OnInit {
         this.accountService.findAll(this.codeId).subscribe(
           (data) => {
             this.ACCOUNTS = data;
-            this.dataSource = new MatTableDataSource<Account>(this.ACCOUNTS);
+            this.dataSource= new MatTableDataSource<Account[]>(this.ACCOUNTS);
+            this.dataSource.paginator = this.paginator;
           },
           (error) => {
-            this.dataSource = new MatTableDataSource<Account>(null);
+            this.dataSource = new MatTableDataSource<Account[]>(null);
           }
         );
       },
@@ -61,16 +65,17 @@ export class AccountListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('hi')
     this.accountService.findAll(this.codeId).subscribe(
       (data) => {
         console.log(data);
         this.ACCOUNTS = data;
-        this.dataSource = new MatTableDataSource<Account>(this.ACCOUNTS);
-        this.dataSource.paginator = this.paginator;
+        this.dataSource = new MatTableDataSource<Account[]>(this.ACCOUNTS);
+        console.log(this.dataSource)
       },
       (error) => {
         console.log(error);
-        this.dataSource = new MatTableDataSource<Account>(null);
+        this.dataSource = new MatTableDataSource<Account[]>(null);
       }
     );
   }

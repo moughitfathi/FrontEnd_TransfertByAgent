@@ -10,7 +10,7 @@ export class AccountService {
   private accountUrl: string;
   constructor(private http: HttpClient) {
     //need to change
-    this.accountUrl = 'http://localhost:8088/AGENT-SERVICE/agent/compte';
+    this.accountUrl = 'http://localhost:8080/agent/compte/client/';
   }
   /*   public findAll(): Observable<Account[]> {
     return this.http.get<Account[]>(this.accountUrl + 's');
@@ -18,7 +18,7 @@ export class AccountService {
   
   public findAll(code: string): Observable<Account[]> {
     return this.http.get<Account[]>(
-      'http://localhost:8088/AGENT-SERVICE/agent/client/' + code + '/comptes'
+      'http://localhost:8080/agent/compte/client/' + code
     );
   }
 
@@ -27,8 +27,8 @@ export class AccountService {
     return this.http.get<Account[]>(this.accountUrl + 's?id=' + code);
   }
 
-  public save(account: Account, code: string) {
-    return this.http.post<Account>('http://localhost:8088/AGENT-SERVICE/agent/client/' + code + '/comptes', account);
+  public save(account: Account) {
+    return this.http.post<Account>('http://localhost:8080/agent/compte/', account);
   }
 
   //need to change

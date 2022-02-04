@@ -13,47 +13,31 @@ export class ClientFormComponent implements OnInit {
   client: Client;
   clients: Client[];
   clientForm = new FormGroup({
-    nom: new FormControl('', Validators.required),
-    prenom: new FormControl('', Validators.required),
-    cin: new FormControl('', Validators.required),
-    adresse: new FormControl('', Validators.required),
-    tel: new FormControl('', Validators.required),
-    username: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.email, Validators.required]),
-    password: new FormControl('', Validators.required),
-    dateNaissance: new FormControl('', Validators.required),
+    firstName: new FormControl('', Validators.required),
+    secondName: new FormControl('', Validators.required),
+    cne: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
+    
 
   });
+ 
+  
 
-  get prenom() {
-    return this.clientForm.get('prenom');
-  }
-
-  get nom() {
-    return this.clientForm.get('nom');
-  }
-  get dateNaissance() {
-    return this.clientForm.get('dateNaissance');
+  get firstName() {
+    return this.clientForm.get('firstName');
   }
 
-  get cin() {
-    return this.clientForm.get('cin');
+  get secondName() {
+    return this.clientForm.get('secondName');
+  }
+  get cne() {
+    return this.clientForm.get('cne');
   }
 
-  get adresse() {
-    return this.clientForm.get('adresse');
-  }
-  get tel() {
-    return this.clientForm.get('tel');
+  get phone() {
+    return this.clientForm.get('phone');
   }
 
-  get username() {
-    return this.clientForm.get('username');
-  }
-
-  get email() {
-    return this.clientForm.get('email');
-  }
 
   constructor(
     private route: ActivatedRoute,

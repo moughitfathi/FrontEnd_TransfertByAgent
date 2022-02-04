@@ -12,8 +12,9 @@ import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmat
   styleUrls: ['./client-list.component.css'],
 })
 export class ClientListComponent implements OnInit {
-  CLIENTS!: Client[];
+  CLIENTS!: any;
   agencyId: string;
+
 
   dataSource = new MatTableDataSource<Client>(this.CLIENTS);
 
@@ -23,20 +24,13 @@ export class ClientListComponent implements OnInit {
   }
   displayedColumns: string[] = [
     'id',
-    'username',
-    'nom',
-    'active',
-    'prenom',
-    'email',
-    'cin',
-    'adresse',
-    'tel',
-    'dateNaissance',
-    'profession',
+    'firstName',
+    'secondName',
+    'cne',
+    'phone',
     'actions',
-    'titre',
-    'typeCin',
-    'nationalite'
+    
+
   ];
   
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -50,7 +44,7 @@ export class ClientListComponent implements OnInit {
       (data) => {
         console.log(data);
 
-        this.clientService.findAll(this.agencyId).subscribe(
+        this.clientService.findAll().subscribe(
           (data) => {
             this.CLIENTS = data;
             this.dataSource = new MatTableDataSource<Client>(this.CLIENTS);
@@ -64,31 +58,14 @@ export class ClientListComponent implements OnInit {
     );
   }
 
-  sus_act(id: number) {
-    this.clientService.sus_act(id).subscribe(
-      (data) => {
-        console.log(data);
-
-        this.clientService.findAll(this.agencyId).subscribe(
-          (data) => {
-            this.CLIENTS = data;
-            this.dataSource = new MatTableDataSource<Client>(this.CLIENTS);
-          },
-          (error) => {
-            this.dataSource = new MatTableDataSource<Client>(null);
-          }
-        );
-      },
-      (error) => console.log(error)
-    );
-  }
 
   ngOnInit(): void {
     console.log('salam');
-    this.clientService.findAll(this.agencyId).subscribe(
+    this.clientService.findAll().subscribe(
       (data) => {
         console.log(data);
         this.CLIENTS = data;
+        
         this.dataSource = new MatTableDataSource<Client>(this.CLIENTS);
         this.dataSource.paginator = this.paginator;
       },
@@ -126,7 +103,7 @@ export class ClientListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.sus_act(result.data.codeSupp);
+        
       }
     });
   }

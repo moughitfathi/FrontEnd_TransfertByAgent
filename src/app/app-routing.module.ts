@@ -13,6 +13,8 @@ import { TransferEspeceFormComponent } from './transfertEspecse/components/trans
 import { TransferEspeceListComponent } from './transfertEspecse/components/transferEspece-list/transferEspece-list.component';
 import { TransferEspeceDoneComponent } from './transfertEspecse/components/transferEspece-done/transferEspece-done.component';
 import { TransferByStatus } from './transfertEspecse/components/transferByStatus/transferByStatus.component';
+import { ClientBenefComponent } from './client/components/client-benef/client-benef.component';
+import { BenefFormComponent } from './client/components/benef-form/benef-form.component';
 
 
 const routes: Routes = [
@@ -28,31 +30,39 @@ const routes: Routes = [
   {
     path: 'clients',
     component: ClientListComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'clientForm',
     component: ClientFormComponent,
+    canActivate: [AuthGuardService],
   },
+
   {
     path: 'client/:id/accounts',
     component: AccountListComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'client/:id/accountForm',
     component: AccountFormComponent,
+    canActivate: [AuthGuardService],
   },
   
   {
-    path: 'compte/transfertForm',
+    path: 'compte/:id/transfertForm',
     component: TransferFormComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'compte/:id/transfets',
     component: TransferListComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'transfertEffectue/:id',
     component: TransferDoneComponent,
+    canActivate: [AuthGuardService],
   },
 
 
@@ -61,20 +71,36 @@ const routes: Routes = [
   {
     path: 'transferEspeceForm',
     component: TransferEspeceFormComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'transferEspece',
     component: TransferEspeceListComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'transferEspeceEffectue/:id',
     component: TransferEspeceDoneComponent,
+    canActivate: [AuthGuardService],
   },
   
   {
     path: 'transferByStatus',
     component: TransferByStatus,
+    canActivate: [AuthGuardService],
   },
+  {
+    path: 'client/:id/beneficiaires',
+    component: ClientBenefComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'beneficiareForm',
+    component: BenefFormComponent,
+    canActivate: [AuthGuardService],
+  },
+
+
 ];
 
 @NgModule({

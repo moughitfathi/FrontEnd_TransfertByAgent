@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Account } from 'src/app/account/model/account';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Transfer } from 'src/app/transfer/model/transfer';
 
 @Component({
   selector: 'app-transfer-list',
@@ -18,8 +19,8 @@ export class TransferEspeceListComponent implements OnInit {
   
   
   //transfers
-  TRANSFERS!: TransferEspece[];
-  dataSource = new MatTableDataSource<TransferEspece>(this.TRANSFERS);
+  TRANSFERS!: Transfer[];
+  dataSource = new MatTableDataSource<Transfer>(this.TRANSFERS);
   displayedColumns: string[] = [
     'dateCreation',
     'mentant',
@@ -49,11 +50,11 @@ export class TransferEspeceListComponent implements OnInit {
       (data) => {
         this.TRANSFERS = data;
 
-        this.dataSource = new MatTableDataSource<TransferEspece>(this.TRANSFERS);
+        this.dataSource = new MatTableDataSource<Transfer>(this.TRANSFERS);
         this.dataSource.paginator = this.paginator;
       },
       (error) => {
-        this.dataSource = new MatTableDataSource<TransferEspece>(null);
+        this.dataSource = new MatTableDataSource<Transfer>(null);
       }
     );
   }

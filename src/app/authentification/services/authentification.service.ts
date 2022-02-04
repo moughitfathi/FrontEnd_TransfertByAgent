@@ -8,24 +8,20 @@ import { Agent } from 'src/app/shared/models/agent';
 export class AuthentificationService {
   constructor(private httpClient: HttpClient) {}
 
-  authentificate(username, password) {
-    const headers = new HttpHeaders({
-      Authorization: 'Basic ' + btoa(username + ':' + password),
-    });
+  authentificate(ag) {
     return this.httpClient
-      .get<Agent>('http://localhost:8088/AGENT-SERVICE/agent/username/' + username, {
-        headers,
-      })
+      .post<Agent>('http://localhost:8080/agent/login/',ag)
       .pipe(
         map((userData) => {
-          sessionStorage.setItem('username', username);
-          sessionStorage.setItem('name', userData.nom);
+          sessionStorage.setItem('username', userData.username);
+          sessionStorage.setItem('soldeAgent', userData.soldeAgent.toString());
+          sessionStorage.setItem('name', userData.password);
           sessionStorage.setItem('pointdevente', userData.pointdevente.id.toString());
           sessionStorage.setItem('currentAgentId', userData.id.toString());
+          console.log(userData);
 
-          let authString = 'Basic ' + btoa(username + ':' + password);
-          sessionStorage.setItem('basicauth', authString);
           return userData;
+
         })
       );
   }
@@ -38,9 +34,9 @@ export class AuthentificationService {
 
   logOut() {
     sessionStorage.removeItem('username');
+    sessionStorage.removeItem('soldeAgent');
     sessionStorage.removeItem('name');
-    sessionStorage.removeItem('pointdevente');
     sessionStorage.removeItem('currentAgentId');
-    sessionStorage.removeItem('basicauth');
+    sessionStorage.removeItem('pointdevente');
   }
 }

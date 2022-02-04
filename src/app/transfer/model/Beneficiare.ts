@@ -1,6 +1,12 @@
 export class Beneficiare{
-  id: number;
-  nom: string;
-  prenom: string;
-  numeroDecompte: number;
+  id?: number;
+  pieceIdentite?: TypePieceIdentite;
+  numIdentite?: string;
+  blackLister?:boolean;
+  gsm?:string
+ 
+}
+enum TypePieceIdentite{
+  CARTEIDENTITE,CERTIFICATMEDICAL
+  ,PASSPORT,PERMISDECONDUITE,AUTRE,
 }

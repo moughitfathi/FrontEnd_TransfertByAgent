@@ -3,10 +3,10 @@
   <form [formGroup]="virementForm" (ngSubmit)="onFormSubmit()">
     <div class="container">
       <div class="whiteForm">
-        <mat-grid-list cols="3" [gutterSize]="'15px'">
+        <mat-grid-list cols="1" rowHeight="12:1">
          
 
-          <mat-grid-tile>
+          <mat-grid-tile class="fullheight">
             <mat-form-field class="formField">
               <mat-label>Somme Total</mat-label>
               <input
@@ -19,8 +19,7 @@
           </mat-grid-tile>
 
           <mat-grid-tile>
-            <h1>Votre solde actuel :</h1>
-          </mat-grid-tile>
+                    </mat-grid-tile>
      
           <mat-grid-tile>
             <div class="envoyer" fxFlex fxLayoutAlign="flex-end">
@@ -37,54 +36,40 @@
           <div formArrayName="listBenef">
             <div *ngFor="let benif of listBenef.controls; index as idx">
               <mat-form-field class="formField">
-                <mat-label>Nom</mat-label>
+                <mat-label>numIdentite</mat-label>
                 <input
                   matInput
                   type="text"
-                  placeholder="entrez nom "
+                  placeholder="entrez num identity"
                   [formControlName]="idx"
                  
                 />
               </mat-form-field>
-              <mat-form-field class="formField">
-                <mat-label>Prénom</mat-label>
-                <input
-                  matInput
-                  type="text"
-                  placeholder="entrez prenom"
-                  [formControlName]="idx"
-                 
-                />
-              </mat-form-field>
-              <mat-form-field class="formField">
-                <mat-label>Télephone</mat-label>
-                <input
-                  matInput
-                  type="text"
-                  placeholder="entrez num telephone"
-                  [formControlName]="idx"
-                 
-                />
-              </mat-form-field>
-              
+            </div>
+          </div>
+          <p></p><p></p>
+          <div formArrayName="listBenef1">
+            <div *ngFor="let benif of listBenef1.controls; index as idx">
+          <mat-form-field class="formField">
+            <mat-label>gsm</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="entrez num telephone"
+              [formControlName]="idx"
+             
+            />
+          </mat-form-field>
             </div>
           </div>
             </mat-grid-tile>
-         
-            
-
-          
-
-
-                
-            
             <mat-grid-tile>
 
         <div formArrayName="sommeBenef" class="sommeclass">
           <div *ngFor="let s of sommeBenef.controls; index as idx">
-
+            
             <mat-form-field class="formField">
-                <mat-label>SommeB</mat-label>
+                <mat-label>montant de transfert</mat-label>
                 <input
                   matInput
                   type="text"
@@ -93,9 +78,6 @@
                  
                 />
 
-                
-              
-              
               
             </mat-form-field>
             <button class="" mat-stroked-button		
@@ -110,9 +92,6 @@
             
       </mat-grid-tile>
         
-          
-          
-         
         </mat-grid-list>
       </div>
     </div>
